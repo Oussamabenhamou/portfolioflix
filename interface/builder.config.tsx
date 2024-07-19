@@ -5,14 +5,12 @@ import locales from '../config/data/locales.config.json';
 import config from "../config";
 import { BuilderDevice } from "./builder/types";
 
-import { BlogSectionComp } from "./sections/Blog";
-import { FooterComp } from "./sections/Footer";
+
 
 const sections = {
     group: [
         
-        BlogSectionComp,
-        FooterComp
+        
 
     ]
 };
