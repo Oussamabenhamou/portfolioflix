@@ -23,6 +23,7 @@ class MyDocument extends Document<DocumentProps> {
         const dir = locale === "ar" ? "rtl" : "ltr";
         
         
+        
         return (
           <Html dir={dir} lang={locale}>
             <Head>
@@ -35,7 +36,7 @@ class MyDocument extends Document<DocumentProps> {
                 <link rel="icon" href="/favicon.png" />
                 <link rel="stylesheet" href="/assets/css/animate.css"/>
                 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
-                <link rel="stylesheet" href="/assets/bootstarp/bootstrap.min.css"/>
+                <link rel="stylesheet" href="/assets/bootstarp/bootstrap.min.css" />
                 <link rel="stylesheet" href="/assets/css/super-classes.css"/>
                 <link rel="stylesheet" href="/assets/css/style.css"/>
                 <link rel="stylesheet" href="/assets/css/mobile.css"/>
@@ -43,14 +44,15 @@ class MyDocument extends Document<DocumentProps> {
             <body>
                 <Main />
                 <NextScript />
-                <Script src="assets/js/wow.js" />
                 
-                <Script src="assets/js/jquery-3.6.0.min.js" /> 
-                <Script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js" />
-                <Script src="assets/js/popper.min.js" /> 
-                <Script src="assets/js/bootstrap.min.js" /> 
-                <Script src="assets/js/custom-Script.js" /> 
-                <Script src="assets/js/contact-form.js" />
+                <Script src="assets/js/wow.js" strategy='beforeInteractive' />
+                
+                <Script src="/assets/js/jquery-3.6.0.min.js" /> 
+                <Script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js" strategy='beforeInteractive'/>
+                <Script src="/assets/js/popper.min.js"  strategy='beforeInteractive'/> 
+                <Script src="/assets/js/bootstrap.min.js" strategy='beforeInteractive'/> 
+                {/*<Script src="/assets/js/custom-Script.js" strategy='beforeInteractive'/> */}
+                <Script src="/assets/js/contact-form.js" strategy='beforeInteractive' />
 
             </body>
           </Html>

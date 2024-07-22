@@ -4,14 +4,14 @@ import { BooleanField, CompField, ListField, ModelField, StringField } from "./b
 import locales from '../config/data/locales.config.json';
 import config from "../config";
 import { BuilderDevice } from "./builder/types";
-
+import { HeaderComp } from "./sections/Header";
+import { ServiceComp } from "./sections/Service";
 
 
 const sections = {
     group: [
-        
-        
-
+        HeaderComp,
+        ServiceComp,
     ]
 };
 
