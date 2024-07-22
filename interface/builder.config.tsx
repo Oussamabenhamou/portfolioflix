@@ -6,12 +6,18 @@ import config from "../config";
 import { BuilderDevice } from "./builder/types";
 import { HeaderComp } from "./sections/Header";
 import { ServiceComp } from "./sections/Service";
+import { FooterComp } from "./sections/Footer";
+import { ContactComp } from "./sections/Contact";
+import { BlogsComp } from "./sections/Blogs";
 
 
 const sections = {
     group: [
         HeaderComp,
         ServiceComp,
+        BlogsComp,
+        FooterComp,
+        ContactComp
     ]
 };
 

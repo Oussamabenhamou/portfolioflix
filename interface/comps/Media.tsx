@@ -6,6 +6,7 @@ import { placeholderImage, resizeMedia } from "../helpers";
 import Lottie from "../comps/Lottie";
 
 export interface MediaProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+    public_id: any;
     media?: BuilderMedia;
     alt?: WC<string>;
     width?: number;
