@@ -7,12 +7,14 @@ import { BuilderDevice } from "./builder/types";
 import { HeaderComp } from "./sections/Header";
 import { BlogSectionComp } from "./sections/Blog";
 import { FooterComp } from "./sections/Footer";
+import { ContactComp } from "./sections/Contact";
+import { BlogsComp } from "./sections/Blogs";
 
 const sections = {
     group: [
-        HeaderComp,
-        BlogSectionComp,
-        FooterComp
+        BlogsComp,
+        FooterComp,
+        ContactComp
 
     ]
 };

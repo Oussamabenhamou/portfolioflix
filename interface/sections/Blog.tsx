@@ -1,7 +1,8 @@
 import React from 'react';
 import { BuilderComp, WC, WCList } from '../builder/types';
 import { StringField, ListField, useBuilderContext } from "../builder";
-import { mediaProps, MediaProps } from "../comps";
+import { MediaComp, mediaProps, MediaProps } from "../comps";
+import { image } from '@cloudinary/url-gen/qualifiers/source';
 
 interface BlogItemProps {
     image: MediaProps;
@@ -9,18 +10,31 @@ interface BlogItemProps {
     date: WC<string>;
     title: WC<string>;
     description: WC<string>;
-    readMoreLink: WC<string>;
+    
 }
 
 interface Props {
     sectionTitle: WC<string>;
     sectionSubtitle: WC<string>;
+    button : WCList<{
+        title: WC<string>;
+        href: WC<string>;
+    }>;
     blogItems: WCList<BlogItemProps>;
 }
 
 const props = {
     sectionTitle: StringField({ type: "short", default: "Latest News" }),
     sectionSubtitle: StringField({ type: "short", default: "Blog & Articles" }),
+    button: ListField({
+        props: {
+            title: StringField({ type: "short", default: "Read More" }),
+            href: StringField({ type: "short", default: "#" }),
+        },
+        default: [
+            { title: "Read More", href: "#" }
+        ]
+    }),
     blogItems: ListField({
         props: {
             image: mediaProps(null),
@@ -32,7 +46,7 @@ const props = {
         },
         default: [
             {
-                image: { src: "assets/image/blog-img-1.png", alt: "blog-img" },
+                image: mediaProps(null),
                 author: "By David William",
                 date: "Mar 8, 2022",
                 title: "Quis autem vea eum iure reprehenderit",
@@ -40,7 +54,7 @@ const props = {
                 readMoreLink: "#"
             },
             {
-                image: { src: "assets/image/blog-img-2.png", alt: "blog-img" },
+                image: mediaProps(null),
                 author: "By John Doe",
                 date: "Mar 9, 2022",
                 title: "Reprehenderit in voluptate velit esse cillum",
@@ -48,7 +62,7 @@ const props = {
                 readMoreLink: "#"
             },
             {
-                image: { src: "assets/image/blog-img-3.png", alt: "blog-img" },
+                image: mediaProps(null),
                 author: "By Elina Parker",
                 date: "Mar 10, 2022",
                 title: "Soluta nobis est eligendi optio cumque",
@@ -59,31 +73,27 @@ const props = {
     })
 };
 
-const BlogSection = ({ sectionTitle, sectionSubtitle, blogItems }) => {
+const BlogSection = ({ sectionTitle, sectionSubtitle,button, blogItems }) => {
     const { c } = useBuilderContext();
 
     return (
         <section className="w-100 float-left blog-con padding-top padding-bottom position-relative" id="blog">
-            <div className="container">
+            <div {...c(props)} className="container">
                 <div className="blog-inner-con position-relative">
                     <div className="generic-title text-center">
                         <h6 {...c(sectionTitle)}>{sectionTitle[0]}</h6>
                         <h2 className="mb-0" {...c(sectionSubtitle)}>{sectionSubtitle[0]}</h2>
                     </div>
                     <div className="blog-box wow fadeInUp">
-                        <div className="row">
+                        <div {...c(blogItems)}className="row">
                             {blogItems[0].map((item, index) => (
                                 <div key={index} className="col-lg-4">
                                     <div className="blog-box-item">
                                         <div className="blog-img">
                                             <a href={item.readMoreLink[0]} data-toggle="modal" data-target={`#blog-model-${index}`}>
                                                 <figure className="mb-0">
-                                                    <img
-                                                        {...c(item.image)}
-                                                        src={item.image.src}
-                                                        alt={item.image.alt}
-                                                        className="img-fluid"
-                                                    />
+                                                {!item.image.media.public_id && <img {...c(item.image.media)} src="assets/image/blog-img-1.png" alt="blog-img" class="img-fluid"/>}
+                                                { item.image.media.public_id && <MediaComp.comp {...image}/>}
                                                 </figure>
                                             </a>
                                         </div>

@@ -1,0 +1,4 @@
+module.exports = (locale) => {
+    return [
+    ]
+}
